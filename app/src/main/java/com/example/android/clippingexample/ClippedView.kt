@@ -1,6 +1,7 @@
 package com.example.android.clippingexample
 
 import android.content.Context
+import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Path
 import android.util.AttributeSet
@@ -51,6 +52,46 @@ class ClippedView @JvmOverloads constructor(
     private val rowThree = rowTwo + rectInset + clipRectBottom
     private val rowFour = rowThree + rectInset + clipRectBottom
     private val textRow = rowFour + (1.5f * clipRectBottom)
+
+    //Override onDraw() and call a function for each shape you are drawing.
+    override fun onDraw(canvas: Canvas) {
+        super.onDraw(canvas)
+        drawBackAndUnclippedRectangle(canvas)
+        drawDifferenceClippingExample(canvas)
+        drawCircularClippingExample(canvas)
+        drawIntersectionClippingExample(canvas)
+        drawCombinedClippingExample(canvas)
+        drawRoundedRectangleClippingExample(canvas)
+        drawOutsideClippingExample(canvas)
+        drawSkewedTextExample(canvas)
+        drawTranslatedTextExample(canvas)
+        // drawQuickRejectExample(canvas)
+    }
+
+    //Create stubs for each of the drawing functions
+
+    private fun drawBackAndUnclippedRectangle(canvas: Canvas) {
+    }
+    private fun drawDifferenceClippingExample(canvas: Canvas) {
+    }
+    private fun drawCircularClippingExample(canvas: Canvas) {
+    }
+    private fun drawIntersectionClippingExample(canvas: Canvas) {
+    }
+    private fun drawCombinedClippingExample(canvas: Canvas) {
+    }
+    private fun drawRoundedRectangleClippingExample(canvas: Canvas) {
+    }
+    private fun drawOutsideClippingExample(canvas: Canvas) {
+    }
+    private fun drawTranslatedTextExample(canvas: Canvas) {
+    }
+    private fun drawSkewedTextExample(canvas: Canvas) {
+    }
+    private fun drawQuickRejectExample(canvas: Canvas) {
+    }
+
+
 
 
 }
