@@ -69,25 +69,40 @@ class ClippedView @JvmOverloads constructor(
         // drawQuickRejectExample(canvas)
     }
 
+    //Create a drawClippedRectangle() method that takes an argument canvas of type Canvas
+
     private fun drawClippedRectangle(canvas: Canvas){
         canvas.clipRect(
+                //method reduces the region of the screen that future draw operations can write to.
+                // It sets the clipping boundaries to be the spatial intersection of the current
+                // clipping rectangle and the rectangle passed into clipRect().
                 clipRectLeft,clipRectTop,
                 clipRectRight,clipRectBottom
         )
+        //ill the canvas with white color. Only the region inside the clipping rectangle
+        // will be filled!
         canvas.drawColor(Color.WHITE)
+
+        //Change the color to red and draw a diagonal line inside the clipping rectangle.
         paint.color = Color.RED
         canvas.drawLine(
                 clipRectLeft,clipRectTop,
                 clipRectRight,clipRectBottom,paint
         )
+
+      //  Set the color to green and draw a circle inside the clipping rectangle.
         paint.color =Color.GREEN
         canvas.drawCircle(
                 circleRadius,clipRectBottom - circleRadius,
                 circleRadius,paint
         )
+
+        //Set the color to blue and draw text aligned with the right edge of the clipping rectangle.
         paint.color =Color.BLUE
         //align the Right side of the text with the origin
         paint.textSize =textSize
+        //Note: The Paint.Align property specifies which side of the text to align to the origin
+        // (not which side of the origin the text goes, or where in the region it is aligned!).
         paint.textAlign = Paint.Align.RIGHT
         canvas.drawText(
                 context.getString(R.string.clipping),
@@ -100,6 +115,17 @@ class ClippedView @JvmOverloads constructor(
     //Create stubs for each of the drawing functions
 
     private fun drawBackAndUnclippedRectangle(canvas: Canvas) {
+
+        canvas.drawColor(Color.GRAY)
+        // Save the canvas
+        canvas.save()
+        // Translate to the first row and column position.
+        canvas.translate(columnOne,rowOne)
+        //Draw by calling drawClippedRectangle().
+        drawClippedRectangle(canvas)
+       // restore the canvas to its previous state.
+        canvas.restore()
+
     }
     private fun drawDifferenceClippingExample(canvas: Canvas) {
     }
